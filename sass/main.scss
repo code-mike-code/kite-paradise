@@ -20,7 +20,8 @@ body {
 	font-size: 1.6rem;
 }
 
-// NAV
+// NAV =============================================================
+// =================================================================
 
 .burger-btn {
 	position: fixed;
@@ -73,7 +74,64 @@ body {
 	}
 }
 
-// header
+.nav {
+	position: fixed;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100%;
+	transform: translateX(100%);
+	transition: 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+	background-image: $blue-gradient-solid;
+	z-index: 100;
+
+	&--active {
+		transform: translateX(0);
+	}
+
+	&__item {
+		position: relative;
+		display: block;
+		margin: 0.5em 0;
+		padding: 0.5em 2em;
+		font-size: 2.8rem;
+		color: $pure-white;
+		text-decoration: none;
+
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 3px;
+			height: 100%;
+			transform: scaleY(0);
+			background-color: $pure-white;
+			transition: transform 0.3s;
+			content: '';
+		}
+		&:hover::before {
+			transform: scaleY(1);
+		}
+	}
+}
+
+@keyframes navItemAnimation {
+	from {
+		transform: translateX(200%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+.nav-items-animation {
+	animation: navItemAnimation 1s both;
+}
+
+// HEADER =============================================================
+//  ==================================================================
 
 .header {
 	position: relative;
@@ -112,52 +170,130 @@ body {
 
 		&::before {
 			background-color: $light-white;
-		} 
+		}
 	}
-
-	
 }
 
+// MAIN ============================================================
+// DREAMS SECTION ==================================================
+
+.dreams {
+	&__box {
+		display: flex;
+		flex-direction: column;
+		margin: 2em 0;
+	}
+
+	&__img {
+		width: 100%;
+		margin-bottom: 1em;
+	}
+
+	&__title {
+		margin-bottom: 0.5em;
+	}
+
+	&__text {
+		font-size: 1.4rem;
+	}
+}
 
 //  MEDIA QUERIES ===================================================
 
 // ==================================================================
+@media (min-width: 576px) {
+	.dreams {
+		&__box {
+			flex-direction: row;
+			justify-content: space-between;
+
+			&-text {
+				width: 55%;
+
+				&--right {
+					text-align: right;
+				}
+			}
+
+			&-img {
+				width: 40%;
+
+				&--right {
+					order: 1;
+				}
+			}
+		}
+		&__img {
+			margin-bottom: 0;
+			max-height: 300px;
+		}
+	}
+}
 
 @media (min-width: 768px) {
-.white-block {
-	height: 50px;
-	width: 45%;
-}
-
-.header {
-	&__heading {
-		font-size: 6.6rem;
+	.white-block {
+		height: 50px;
+		width: 45%;
 	}
 
-	&__text {
-		font-size: 2.2rem;
-	}
-	&__btn {
-		font-size: 1.6rem;
-	}
-}
+	.header {
+		&__heading {
+			font-size: 6.6rem;
+		}
 
+		&__text {
+			font-size: 2.2rem;
+		}
+		&__btn {
+			font-size: 1.6rem;
+		}
+	}
 
+	.dreams {
+		&__text {
+			font-size: 1.8rem;
+		}
+	}
 }
 
 @media (min-width: 992px) {
-.burger-btn {
-	top: 45px;
-	right: 45px;
-}
-
-.header {
-	background-image: $blue-gradient, url(../img/header.big.jpeg);
-
-	&__heading {
-		font-size: 10rem;
+	.burger-btn {
+		top: 45px;
+		right: 45px;
 	}
-}
 
+	.header {
+		background-image: $blue-gradient, url(../img/header.big.jpeg);
 
+		&__heading {
+			font-size: 10rem;
+		}
+	}
+
+	.nav {
+		&__item {
+			font-size: 4.8rem;
+		}
+	}
+
+	.dreams {
+		&__box {
+			margin: 5em 0;
+
+			&-text {
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				margin-bottom: 2.5em;
+			}
+		}
+
+		&__title {
+			font-size: 3.6rem;
+		}
+
+		&__text {
+			font-size: 2.2rem;
+		}
+	}
 }
